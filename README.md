@@ -93,8 +93,19 @@ data
 ```
 ## Training
 
-For Training from a checkpoint :
-python  train.py --batch-size 4 --seq-len 750 --gpu-ids 0  -lr 0.00001  -e 10  -j 4  --outdir results/emotions_marlin_t--max-seq-len 751 --use-video  --contrastive  --resume ./results/emotion_marlin/best_contra_checkpoint.pth
+- For Training from a checkpoint (With Contrastive Loss):
+
+```shell
+python train.py --batch-size 4 --seq-len 750 --gpu-ids 0 -lr 0.00001 -e 10 -j 4 --outdir results/emotions_marlin_t--max-seq-len 751 --use-video --contrastive --resume ./results/emotion_marlin/best_contra_checkpoint.pth
+```
+
+- Without Contrastive Loss
+
+```shell
+python train.py --batch-size 4 --seq-len 750 --gpu-ids 0  -lr 0.00001 -e 10 -j 4  --outdir results/emotion_marlin --max-seq-len 751 --use-video --contrastive  --resume ./results/emotion_marlin/best_contra_checkpoint.pth
+```
 
 ## Evaluation
-
+```shell
+python evaluate.py --batch-size 4 --gpu-ids 0 -j 4 --seq-len 750 --split val --resume ./results/emotion_marlin/best_contra_checkpoint.pth --use-video
+```
